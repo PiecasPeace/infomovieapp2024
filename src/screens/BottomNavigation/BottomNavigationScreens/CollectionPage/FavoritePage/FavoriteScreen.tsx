@@ -1,32 +1,18 @@
-import React, {Fragment, useState} from 'react';
-import {ListRenderItem, ListRenderItemInfo, Text, View} from 'react-native';
-import Spinner from '../../../../../components/Spinner/Spinner';
-import {ItmdbItem} from '../../../../../constants/Interfaces/IMovieInterface';
-import {styles} from './styles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import FavoriteItem from './FavoriteItem/FavoriteItem';
-import {CustomButton} from '../../../../../components/blueprints/CustomButton/CustomButton';
-import {WHITE} from '../../../../../constants/Colors/colorpalette';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {RowMap, SwipeListView} from 'react-native-swipe-list-view';
-import _ from 'lodash';
-import {
-  loadFavorites,
-  deleteFavorite,
-} from '../../../../../constants/HandleAsyncStorage/HandleAS';
-import {useFocusEffect} from '@react-navigation/native';
-import {
-  tmdbGetById,
-  tmdbGetByIdTV,
-} from '../../../../../constants/services/APICallsTMDB';
-import {IMovieIDInterface} from '../../../../../constants/Interfaces/IMovieByIDInterface';
-import {
-  MapState,
-  MapStateTV,
-} from '../../HomePage/Flatlist/IHomeListProps';
-import {MovieDetails} from '../../../../../components/MovieLayout/MovieDetail/MovieDetails';
-import {IMovieIDTVInterface} from '../../../../../constants/Interfaces/IMovieByIDTVInterface';
-import {TVSeriesPopup} from '../../../../../components/MovieLayout/TVSeriesPopup/TVSeriesPopup';
+import _ from "lodash";
+import React, { useState, Fragment } from "react";
+import { ListRenderItemInfo, View, Text, TouchableOpacity, ListRenderItem } from "react-native";
+import { RowMap, SwipeListView } from "react-native-swipe-list-view";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Spinner } from "../../../../../components/Spinner/Spinner";
+import { WHITE } from "../../../../../constants/color/colorpalette";
+import { loadFavorites, deleteFavorite } from "../../../../../constants/HandleAsyncStorage/HandleAS";
+import { IMovieIDInterface } from "../../../../../constants/Interfaces/IMovieByIDInterface";
+import { IMovieIDTVInterface } from "../../../../../constants/Interfaces/IMovieByIDTVInterface";
+import { ItmdbItem } from "../../../../../constants/Interfaces/IMovieInterface";
+import { styles } from "./styles";
+import FavoriteItem from "./FavoriteItem/FavoriteItem";
+import { tmdbGetById, tmdbGetByIdTV } from "../../../../../constants/services/APICallsTMDB";
+
 
 export const FavoriteScreen: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -83,7 +69,7 @@ export const FavoriteScreen: React.FC = () => {
         updateMap(keyID, favoriteMovieValues);
         deleteMovie(favoriteMovieValues.id);
       } catch (err) {
-        err.message;
+        err;
       }
     }
   };
@@ -198,3 +184,7 @@ export const FavoriteScreen: React.FC = () => {
     </View>
   );
 };
+function useFocusEffect(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
+
