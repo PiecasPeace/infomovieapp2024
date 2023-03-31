@@ -1,22 +1,15 @@
-import {useFocusEffect} from '@react-navigation/core';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   Image,
   ListRenderItem,
   ListRenderItemInfo,
+  ScrollView,
 } from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import ReadMore from 'react-native-read-more-text';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  BLACK,
-  LIGHT_PURPLE,
-  WHITE,
-} from '../../../../constants/Colors/colorpalette';
+import {LIGHT_PURPLE, BLACK} from '../../../../constants/color/colorpalette';
 import {RootStackParamList} from '../../../../constants/Navigation/navigation';
 import {
   tmdbGetPerson,
@@ -29,17 +22,15 @@ import {CustomFlatList} from '../../../blueprints/CustomFlatList/CustomFlatList'
 import {CustomModal} from '../../../blueprints/CustomModal/CustomModal';
 import {CustomTouchableOpacity} from '../../../blueprints/CustomTouchableOpacity/CustomTouchableOpacity';
 import NotificationCard from '../../../NotificationCard/NotificationCard';
-import CustomSafeAreaView from '../../../Screen/CustomSafeAreaView';
-import Spinner from '../../../Spinner/Spinner';
+import {Spinner} from '../../../Spinner/Spinner';
 import {ReadMoreFooter} from '../../MovieDetail/HandleReadMore/ReadMoreFooter';
-import {
-  ICast,
-  IPersonWithMovieCredits,
-} from '../../MovieDetail/Interfaces/ICastWithCredits';
+import {IPersonWithMovieCredits} from '../../MovieDetail/Interfaces/ICastWithCredits';
 import {SelectionRow} from '../SelectionRow/SelectionRow';
-import {CREDITS_INIT} from './MovieCreditsInitials';
 import {PERSON_INIT} from './PersonInitials';
 import {styles} from './styles';
+import ReadMore from 'react-native-read-more-text';
+import {CustomSafeAreaView} from '../../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
+import {useFocusEffect} from '@react-navigation/native';
 
 interface ICastModalProps {
   isVisible: boolean;
@@ -183,7 +174,12 @@ export const CastModal: React.FC<ICastModalProps> = ({
   );
 
   return (
-    <CustomModal style={styles.modal} isVisible={isVisible} onClose={onClose}>
+    <CustomModal
+      style={styles.modal}
+      visible={isVisible}
+      onClose={onClose}
+      dismissable
+      overlayAccessibilityLabel="Close Modal">
       <View style={styles.containerModal}>
         {isLoading && creditLoading ? (
           <Spinner />

@@ -7,18 +7,18 @@ interface ICustomModalProps {
   dismissable: boolean;
   visible: boolean;
   overlayAccessibilityLabel: string;
-  onDismiss: () => void;
+  onClose: () => void;
   children: ReactNode;
-  contentContainerStyle: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
+  contentContainerStyle?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
   style: StyleProp<ViewStyle>;
-  theme: ThemeProp | undefined;
+  theme?: ThemeProp | undefined;
 }
 
 export const CustomModal: React.FC<ICustomModalProps> = ({
-  dismissable,
+  dismissable = true,
   children,
   overlayAccessibilityLabel,
-  onDismiss,
+  onClose,
   contentContainerStyle,
   visible,
   style,
@@ -28,7 +28,7 @@ export const CustomModal: React.FC<ICustomModalProps> = ({
     dismissable={dismissable}
     visible={visible}
     overlayAccessibilityLabel={overlayAccessibilityLabel}
-    onDismiss={onDismiss}
+    onDismiss={onClose}
     contentContainerStyle={contentContainerStyle}
     style={style}
     theme={theme}>

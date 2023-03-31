@@ -12,6 +12,7 @@ import { ItmdbItem } from "../../../../../constants/Interfaces/IMovieInterface";
 import { styles } from "./styles";
 import FavoriteItem from "./FavoriteItem/FavoriteItem";
 import { tmdbGetById, tmdbGetByIdTV } from "../../../../../constants/services/APICallsTMDB";
+import { TVSeriesPopup } from "../../../../../components/MovieLayout/TVSeriesPopup/TVSeriesPopup";
 
 
 export const FavoriteScreen: React.FC = () => {
