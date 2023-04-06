@@ -31,6 +31,7 @@ import {styles} from './styles';
 import ReadMore from 'react-native-read-more-text';
 import {CustomSafeAreaView} from '../../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
 import {useFocusEffect} from '@react-navigation/native';
+import { CreditLayout } from './CreditLayout';
 
 interface ICastModalProps {
   isVisible: boolean;
@@ -129,40 +130,6 @@ export const CastModal: React.FC<ICastModalProps> = ({
       requestTeamInfo();
     }, [creditId]),
   );
-  interface ICreditLayout {
-    openDetails: (id: number) => void;
-    item: IPersonWithMovieCredits;
-  }
-  const CreditLayout: React.FC<ICreditLayout> = ({
-    item,
-    openDetails,
-  }: ICreditLayout) => {
-    return (
-      <CustomTouchableOpacity
-        onPress={() => openDetails(item.id)}
-        activeOpacity={0.5}
-        key={item.id}>
-        <View
-          style={{
-            paddingRight: 10,
-            width: '50%',
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            // flex:1
-          }}>
-          <Image
-            source={getImageApi(item.poster_path)}
-            style={{
-              width: 130,
-              height: 200,
-              borderRadius: 5,
-            }}
-            resizeMode="cover"
-          />
-        </View>
-      </CustomTouchableOpacity>
-    );
-  };
 
   const renderMovieCreditsItem: ListRenderItem<IPersonWithMovieCredits> = ({
     item,
