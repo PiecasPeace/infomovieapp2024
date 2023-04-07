@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {fontSizeResponsive} from '../../../../constants/utils/dimensions';
 import {
   DARK_PURPLE,
-  LIGHT_GRAY,
   LIGHT_PURPLE,
+  LIGHT_GRAY,
   SUB_GRAY,
-} from '../../../../constants/Colors/colorpalette';
-import {fontSizeResponsive} from '../../../../constants/utils/dimensions';
+} from '../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   modal: {

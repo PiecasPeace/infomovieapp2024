@@ -31,7 +31,7 @@ import {styles} from './styles';
 import ReadMore from 'react-native-read-more-text';
 import {CustomSafeAreaView} from '../../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
 import {useFocusEffect} from '@react-navigation/native';
-import { CreditLayout } from './CreditLayout';
+import {CreditLayout} from './CreditLayout';
 
 interface ICastModalProps {
   isVisible: boolean;
