@@ -1,10 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
 import {CustomButton} from '../../../../components/blueprints/CustomButton/CustomButton';
-import {PINK, WHITE} from '../../../../constants/Colors/colorpalette';
 import {CollectionProps} from '../../../../constants/Navigation/navigation';
 import {CollectionItem} from './CollectionItem/CollectionItem';
 import {styles} from './styles';
+import {WHITE, PINK} from '../../../../constants/color/colorpalette';
 
 export const CollectionScreen: React.FC<CollectionProps> = ({
   navigation,
@@ -30,7 +30,7 @@ export const CollectionScreen: React.FC<CollectionProps> = ({
       <View>
         <CustomButton
           Text="Go back to Home"
-          color={PINK}
+          buttonColor={PINK}
           mode="outlined"
           style={{}}
           onPress={() => navigation.navigate('Home')}

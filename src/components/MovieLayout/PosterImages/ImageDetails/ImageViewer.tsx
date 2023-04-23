@@ -6,7 +6,6 @@ import {BLACK, WHITE} from '../../../../constants/Colors/colorpalette';
 import {IImageModalProps} from './IImageProps';
 import RNFetchBlob, {FetchBlobResponse} from 'rn-fetch-blob';
 import {CustomGetPermissionAndroid} from '../../../blueprints/CustomHandleDownload/CustomGetPermissionAndroid';
-import CameraRoll from '@react-native-community/cameraroll';
 import {CustomButton} from '../../../blueprints/CustomButton/CustomButton';
 
 const ImagesModal: React.FC<IImageModalProps> = ({

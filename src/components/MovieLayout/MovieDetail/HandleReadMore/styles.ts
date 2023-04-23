@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PINK} from '../../../../constants/Colors/colorpalette';
+import {PINK} from '../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   footerContainer: {

@@ -1,7 +1,12 @@
 import {IResultItem} from '../../../../constants/Interfaces/IMovieByIDInterface';
 
-export const UNINFORMED = 'Uninformed';
-export const ADULT_RATE = {
+export const UNINFORMED = 'Uninformed' as string;
+
+type personAdult = {
+  [key: string]: string;
+};
+
+export const ADULT_RATE: personAdult = {
   true: 'No',
   false: 'Yes',
 };
@@ -27,6 +32,7 @@ export interface IOriginalInfo {
     Adult: string;
   };
 }
+
 export const IOriginal_Info: IOriginalInfo = {
   id: 0,
   backdrop_path: '',
