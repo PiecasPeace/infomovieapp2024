@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Image, Text, TouchableHighlight} from 'react-native';
-import {WHITE} from '../../../constants/Colors/colorpalette';
 import {convertToYear} from '../../../constants/convert/convertToDates';
 import {getLanguage} from '../../../constants/Language/getLanguageFunction';
-import {renderScore} from '../../../constants/MovieScore/renderScore';
-import {renderDivider} from '../../../constants/RenderDivider/RenderDivider';
 import {CustomButton} from '../../blueprints/CustomButton/CustomButton';
 import {convertTypeWithGenre} from '../../../constants/utils/genreFunctions';
-import {getImageApi} from '../../../constants/utils/Image';
 import {IMovieLayoutInterface} from './IMovieLayoutInterface';
 import {styles} from './styles';
+import {WHITE} from '../../../constants/color/colorpalette';
+import {renderScore} from '../../MovieScore/renderScore';
+import {renderDivider} from '../../RenderDivider/RenderDivider';
+import {getImageApi} from '../../../constants/utils/image';
 
 export const MovieLayout: React.FC<IMovieLayoutInterface> = ({
   openDetails,
@@ -55,7 +55,7 @@ export const MovieLayout: React.FC<IMovieLayoutInterface> = ({
             <CustomButton
               key={item.id}
               Text={item.favorite ? 'Unfavorite' : 'Favorite'}
-              color={item.favorite ? WHITE : WHITE}
+              buttonColor={item.favorite ? WHITE : WHITE}
               mode="outlined"
               icon={item.favorite ? 'heart-outline' : 'heart'}
               onPress={() => StoreFavoriteMovies(item.id)}

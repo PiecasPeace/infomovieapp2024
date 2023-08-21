@@ -1,4 +1,3 @@
-import {ComponentType, JSXElementConstructor, ReactElement} from 'react';
 import {ListRenderItem} from 'react-native';
 import {IProductionCompanies} from '../../../../../../constants/Interfaces/IMovieByIDInterface';
 

@@ -1,14 +1,21 @@
-export const convertToYear = (date: string | number | Date) =>
-  new Date(date).getFullYear() || '';
-
-export const convertToDate = (date: string | number | Date) => {
-  const newDate = new Date(date);
-
-  return (
-    `${newDate.getDate() + 1}/${
-      newDate.getMonth() + 1
-    }/${newDate.getFullYear()}` || 'Uninformed'
-  );
+export const convertToYear = (date: string | number | Date): string => {
+  const year = new Date(date).getFullYear();
+  return year ? year.toString() : '';
 };
 
-export const getTodayDate = () => new Date().toISOString().slice(0, 10);
+export const convertToDate = (date: string | number | Date): string => {
+  const newDate = new Date(date);
+  if (!isNaN(newDate.getTime())) {
+    const day = newDate.getDate() + 1;
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+  return 'Uninformed';
+};
+
+export const getTodayDate = (): string => {
+  const today = new Date();
+  const isoDate = today.toISOString().slice(0, 10);
+  return isoDate;
+};

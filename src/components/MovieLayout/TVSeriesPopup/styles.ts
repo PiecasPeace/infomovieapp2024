@@ -1,9 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {fontSizeResponsive} from '../../../constants/utils/dimensions';
-import {
-  BLACK,
-  LIGHT_PURPLE,
-} from '../../../constants/Colors/colorpalette';
+import {BLACK, LIGHT_PURPLE} from '../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   FlatlistContainer: {

@@ -1,12 +1,10 @@
 import React, {Fragment} from 'react';
 import {View, Text} from 'react-native';
 import {CustomButton} from '../../../../../components/blueprints/CustomButton/CustomButton';
-import {
-  WHITE,
-  BORDEAUX_RED,
-} from '../../../../../constants/Colors/colorpalette';
+
 import {styles} from './styles';
 import {HistoryProps, HistoryItemProps} from './IMovieHistoryInterface';
+import { BORDEAUX_RED, WHITE } from '../../../../../constants/color/colorpalette';
 
 const HistoryItem = ({history, index, onPress}: HistoryItemProps) => {
   const MovieTitleIndex = () => {
@@ -22,7 +20,7 @@ const HistoryItem = ({history, index, onPress}: HistoryItemProps) => {
           onPress={() => onPress(index)}
           contentStyle={{backgroundColor: BORDEAUX_RED}}
           mode={'contained'}
-          color={WHITE}
+          textColor={WHITE}
           Text="Search"
           style={styles.buttonLabel}
           labelStyle={styles.buttonLabel}
@@ -35,13 +33,13 @@ const HistoryItem = ({history, index, onPress}: HistoryItemProps) => {
 export const ShowHistory = ({history, onPress}: HistoryProps) => {
   return (
     <Fragment>
-      {history.map((v, i) => {
+      {history.map((v, index: number) => {
         return (
           <HistoryItem
-            index={i}
+            index={index}
             history={history}
-            onPress={() => onPress(i)}
-            key={i}
+            onPress={() => onPress(index)}
+            key={index}
           />
         );
       })}

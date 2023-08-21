@@ -12,20 +12,17 @@ import {sliceArrayLength} from '../../../constants/utils/sliceArrayLength';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SelectionRow} from '../Cast/SelectionRow/SelectionRow';
 import {PosterImages} from '../PosterImages/PosterImages';
-import CustomSafeAreaView from '../../Screen/CustomSafeAreaView';
 import {tmdbGetById} from '../../../constants/services/APICallsTMDB';
 import {convertMinsToHrs} from '../../../constants/convert/convertMinToHour';
 import {convertTypeWithGenre} from '../../../constants/utils/genreFunctions';
 import {convertToDate} from '../../../constants/convert/convertToDates';
 import {convertToDollar} from '../../../constants/convert/convertToDollar';
-import Spinner from '../../Spinner/Spinner';
 import {
   ADULT_RATE,
   IOriginal_Info,
   UNINFORMED,
 } from './Interfaces/IOriginal_Info';
 import {convertToUpperCase} from '../../../constants/convert/convertToUpperCase';
-import {isoLanguage} from '../../../constants/isoLanguage';
 import {CompanyRowList} from '../Cast/SelectionRow/DetailRowList/CompanyRow/ComapanyRowList';
 import {CrewRowList} from '../Cast/SelectionRow/DetailRowList/CrewRow/CrewRowList';
 import {PersonRowList} from '../Cast/SelectionRow/DetailRowList/PersonRow/PersonRowList';
@@ -35,8 +32,11 @@ import ReadMore from 'react-native-read-more-text';
 import {styles} from './styles';
 import {ReadMoreFooter} from './HandleReadMore/ReadMoreFooter';
 import {CastModal} from '../Cast/CastModal/CastModal';
-import {BLUE} from '../../../constants/Colors/colorpalette';
 import {fontSizeResponsive} from '../../../constants/utils/dimensions';
+import {CustomSafeAreaView} from '../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
+import {isoLanguage} from '../../../constants/Language/isoLanguage';
+import {Spinner} from '../../Spinner/Spinner';
+import {renderEmptyList} from '../../../constants/utils/renderEmptyList';
 
 export const MovieDetails: React.FC<IMovieDetailProps> = ({
   item,
@@ -142,21 +142,6 @@ export const MovieDetails: React.FC<IMovieDetailProps> = ({
     } finally {
       setLoading(false);
     }
-  };
-
-  const renderEmptyList = () => {
-    return (
-      <View>
-        <Text
-          style={{
-            fontSize: fontSizeResponsive(2.1),
-            color: BLUE,
-            textAlign: 'justify',
-          }}>
-          No Information
-        </Text>
-      </View>
-    );
   };
 
   const PersonList: ListRenderItem<ICastItem> = ({

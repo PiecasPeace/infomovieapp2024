@@ -13,3 +13,20 @@ export const extractMovieTitles = (
   }
   return extractedTitles;
 };
+//TODO: Test this commented out function..
+// export const extractMovieTitles = (
+//   rawTitles: string[],
+//   regex: RegExp,
+// ): string[] => {
+//   const regexOutput = rawTitles[0].match(regex);
+//   const extractedTitles: string[] = [];
+
+//   if (regexOutput) {
+//     for (const match of regexOutput) {
+//       extractedTitles.push(match);
+//       console.log(match);
+//     }
+//   }
+
+//   return extractedTitles;
+// };

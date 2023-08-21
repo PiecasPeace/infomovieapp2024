@@ -1,8 +1,8 @@
 import React from 'react';
-import {WebView} from 'react-native-webview';
-import CustomSafeAreaView from '../../../Screen/CustomSafeAreaView';
-import Spinner from '../../../Spinner/Spinner';
 import { IMovieVideoProps } from './IMovieVideoProps';
+import { Spinner } from '../../../Spinner/Spinner';
+import { CustomSafeAreaView } from '../../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
+import WebView from 'react-native-webview';
 
 const Loading = () => <Spinner />;
 

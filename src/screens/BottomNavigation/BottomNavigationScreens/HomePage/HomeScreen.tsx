@@ -2,35 +2,45 @@ import React, {Fragment, useState} from 'react';
 import {View} from 'react-native';
 import {HomeList} from './Flatlist/HomeList';
 import {styles} from './styles';
-import {WHITE} from '../../../../constants/Colors/colorpalette';
-import DropDownPicker from 'react-native-dropdown-picker';
+import DropDownPicker, {ValueType} from 'react-native-dropdown-picker';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {requestPath} from '../../../../constants/RequestPath';
-import {
-  HomeProps,
-  RootStackParamList,
-} from '../../../../constants/Navigation/navigation';
+import {RootStackParamList} from '../../../../constants/Navigation/navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {WHITE} from '../../../../constants/color/colorpalette';
 
 interface IHomeProps {
   navigation: StackNavigationProp<RootStackParamList, 'Home'>;
 }
 
 const HomeScreen: React.FC<IHomeProps> = ({navigation}: IHomeProps) => {
-  const [dropdownString, setDropdownString] = useState(requestPath.MostPopular);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(requestPath.MostPopular);
+
+  const handleDropdownChange = (item: ValueType | null) => {
+    if (item && typeof item === 'string') {
+      setValue(item);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Fragment>
         <DropDownPicker
+          open={open}
+          value={value}
+          setOpen={setOpen}
+          setValue={setValue}
+          onSelectItem={() => setOpen(true)}
+          // setItems={() => handleDropdownChange(value)}
           placeholder="Choose List"
           style={styles.dropDownPicker}
           containerStyle={styles.dropContainer}
-          onChangeItem={(item) => setDropdownString(item.value)}
-          itemStyle={styles.dropItem}
+          onChangeValue={handleDropdownChange}
+          listItemContainerStyle={styles.dropItem}
           labelStyle={styles.dropLabel}
-          selectedLabelStyle={styles.dropSelectedLabel}
-          dropDownStyle={styles.dropListStyle}
-          arrowColor={WHITE}
+          listItemLabelStyle={styles.dropSelectedLabel}
+          dropDownContainerStyle={styles.dropListStyle}
           items={[
             {
               label: 'Most Popular',
@@ -63,7 +73,7 @@ const HomeScreen: React.FC<IHomeProps> = ({navigation}: IHomeProps) => {
             },
           ]}
         />
-        <HomeList fetchUrl={dropdownString} navigation={navigation} />
+        <HomeList fetchUrl={value} navigation={navigation} />
       </Fragment>
     </View>
   );

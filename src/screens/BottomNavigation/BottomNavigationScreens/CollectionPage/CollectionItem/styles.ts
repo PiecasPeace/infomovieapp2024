@@ -1,6 +1,5 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import { WHITE } from '../../../../../constants/color/colorpalette';
+import {WHITE} from '../../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   title: {

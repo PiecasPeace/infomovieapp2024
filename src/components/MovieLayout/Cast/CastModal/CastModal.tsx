@@ -17,7 +17,6 @@ import {
 } from '../../../../constants/services/APICallsTMDB';
 import {width} from '../../../../constants/utils/dimensions';
 import {getAge} from '../../../../constants/utils/getAge';
-import {getImageApi} from '../../../../constants/utils/Image';
 import {CustomFlatList} from '../../../blueprints/CustomFlatList/CustomFlatList';
 import {CustomModal} from '../../../blueprints/CustomModal/CustomModal';
 import {CustomTouchableOpacity} from '../../../blueprints/CustomTouchableOpacity/CustomTouchableOpacity';
@@ -32,6 +31,7 @@ import ReadMore from 'react-native-read-more-text';
 import {CustomSafeAreaView} from '../../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
 import {useFocusEffect} from '@react-navigation/native';
 import {CreditLayout} from './CreditLayout';
+import {getImageApi} from '../../../../constants/utils/image';
 
 interface ICastModalProps {
   isVisible: boolean;

@@ -1,3 +1,5 @@
+// const adult = IMovieIDInterface
+
 export interface IMovieIDInterface {
   adult: string;
   backdrop_path: string;

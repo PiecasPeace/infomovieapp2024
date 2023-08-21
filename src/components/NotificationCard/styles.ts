@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {BLUE, LIGHT_GRAY, WHITE} from '../../constants/color/colorPalette';
 import {fontSizeResponsive} from '../../constants/utils/dimensions';
+import {WHITE, BLUE, LIGHT_GRAY} from '../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   containerError: {

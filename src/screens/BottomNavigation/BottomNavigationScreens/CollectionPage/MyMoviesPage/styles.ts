@@ -1,7 +1,10 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import { fontSizeResponsive } from '../../../../../constants/utils/dimensions';
-import {DARK_BLUE, DARK_PURPLE, LIGHT_PURPLE, WHITE} from '../../../../../constants/Colors/colorpalette';
+import {fontSizeResponsive} from '../../../../../constants/utils/dimensions';
+import {
+  DARK_PURPLE,
+  WHITE,
+  DARK_BLUE,
+} from '../../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   myMoviesContainer: {

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {View, Text} from 'react-native';
-import { BORDEAUX_RED } from '../../../../constants/Colors/colorpalette';
 import {styles} from './styles';
+import {BORDEAUX_RED} from '../../../../constants/color/colorpalette';
 
 export interface ISelectionRowProp {
   title: string;
-  children: Element;
+  children: ReactNode;
   color?: string;
   marginLeft?: number;
 }

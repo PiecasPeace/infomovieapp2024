@@ -1,6 +1,5 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import {DARK_PURPLE, LIGHT_PURPLE, WHITE} from '../../../../constants/Colors/colorpalette';
+import {DARK_PURPLE} from '../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   collectionContainer: {

@@ -1,7 +1,11 @@
 import {StyleSheet} from 'react-native';
-import { DARK_PURPLE, BLACK, WHITE, DARK_GRAY } from '../../../../../../constants/color/colorpalette';
+import {
+  DARK_PURPLE,
+  BLACK,
+  WHITE,
+  DARK_GRAY,
+} from '../../../../../../constants/color/colorpalette';
 import {fontSizeResponsive} from '../../../../../../constants/utils/dimensions';
-
 
 export const styles = StyleSheet.create({
   swipeContainer: {

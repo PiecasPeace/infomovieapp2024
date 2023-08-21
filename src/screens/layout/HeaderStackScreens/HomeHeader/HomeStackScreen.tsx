@@ -4,10 +4,10 @@ import {CustomHeader} from '../../../../components/Header/Header';
 import {RootStackParamList} from '../../../../constants/Navigation/navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MovieVideo from '../../../../components/MovieLayout/PosterImages/video/MovieVideo';
-import {DARK_PURPLE} from '../../../../constants/Colors/colorpalette';
 import {MovieDetails} from '../../../../components/MovieLayout/MovieDetail/MovieDetails';
 import {createStackNavigator} from '@react-navigation/stack';
 import {IHomeProps} from './IHomeProps';
+import { DARK_PURPLE } from '../../../../constants/color/colorpalette';
 
 const HomeStack = createStackNavigator<RootStackParamList>();
 export const HomeStackScreen: React.FC<IHomeProps> = ({

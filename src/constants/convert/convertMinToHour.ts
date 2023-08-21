@@ -1,9 +1,13 @@
-export const convertMinsToHrs = (time: number) => {
-  let hour = Math.floor(time / 60);
-  hour < 10 ? `0${hour}` : hour;
+export const convertMinsToHrs = (time: number): string => {
+  const hours = Math.floor(time / 60);
+  const minutes = time % 60;
 
-  let minutes = time % 60;
-  minutes < 10 ? `0${minutes}` : minutes;
+  if (hours >= 0 && minutes >= 0) {
+    const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
 
-  return hour && minutes ? `${hour}h ${minutes}m` : 'Uninformed';
+    return `${formattedHours}h ${formattedMinutes}m`;
+  }
+
+  return 'Uninformed';
 };

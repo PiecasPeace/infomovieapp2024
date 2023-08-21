@@ -1,7 +1,7 @@
 import React from 'react';
 import AboutDrawerScreen from '../../../LeftDrawer/AboutDrawerScreen/AboutDrawerScreen';
+import {AboutDrawerProps} from '../../../../constants/Navigation/navigation';
 import {CustomHeader} from '../../../../components/Header/Header';
-import { AboutDrawerProps } from '../../../../constants/Navigation/navigation';
 
 export const AboutStackScreen: React.FC<AboutDrawerProps> = ({
   navigation,

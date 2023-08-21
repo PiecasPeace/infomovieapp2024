@@ -30,14 +30,14 @@ export const BarcodeMovieList: React.FC<BarcodeMovieListProps> = ({
         <CustomButton
           style={styles.stopScan}
           mode={'outlined'}
-          color={'#fff'}
+          textColor={'#fff'}
           onPress={stopScanFunction}
           Text={'Stop'}
         />
         <CustomButton
           style={styles.scanAgain}
           mode={'outlined'}
-          color={'#fff'}
+          textColor={'#fff'}
           onPress={scanAgainFunction}
           Text={'Scan Again'}
         />

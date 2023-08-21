@@ -1,10 +1,10 @@
 import React from 'react';
 import {Image, Text, TouchableHighlight, View} from 'react-native';
-import { renderDivider } from '../../../../../../components/RenderDivider/RenderDivider';
+import {renderDivider} from '../../../../../../components/RenderDivider/RenderDivider';
 import {convertToYear} from '../../../../../../constants/convert/convertToDates';
 import {ItmdbItem} from '../../../../../../constants/Interfaces/IMovieInterface';
-import { getLanguage } from '../../../../../../constants/Language/getLanguageFunction';
-import { getImageApi } from '../../../../../../constants/utils/image';
+import {getLanguage} from '../../../../../../constants/Language/getLanguageFunction';
+import {getImageApi} from '../../../../../../constants/utils/image';
 import {styles} from './styles';
 
 export interface IFavoriteItem {

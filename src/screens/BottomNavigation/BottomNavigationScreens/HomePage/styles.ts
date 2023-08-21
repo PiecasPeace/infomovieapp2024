@@ -1,11 +1,10 @@
 import {StyleSheet} from 'react-native';
 import {
-  WHITE,
   LIGHT_PURPLE,
+  WHITE,
   DARK_PURPLE,
   PINK,
-  RED,
-} from '../../../../constants/Colors/colorpalette';
+} from '../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   container: {

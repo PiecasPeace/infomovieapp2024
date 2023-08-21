@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {DARK_RED, WHITE} from '../../../constants/Colors/colorpalette';
 import {fontSizeResponsive, width} from '../../../constants/utils/dimensions';
+import {DARK_RED, WHITE} from '../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   PosterImageContainer: {flex: 1},

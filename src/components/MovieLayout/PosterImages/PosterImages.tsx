@@ -1,14 +1,14 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {getImageApi} from '../../../constants/utils/Image';
 import {styles} from './styles';
-import {getAvarageRating} from '../../../constants/MovieScore/getAverageRating';
 import ImagesModal from './ImageDetails/ImageViewer';
-import {WHITE} from '../../../constants/Colors/colorpalette';
 import {width} from '../../../constants/utils/dimensions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {IPosterImageProps} from './IPosterImageProps';
-import { CustomTouchableOpacity } from '../../blueprints/CustomTouchableOpacity/CustomTouchableOpacity';
+import {CustomTouchableOpacity} from '../../blueprints/CustomTouchableOpacity/CustomTouchableOpacity';
+import {WHITE} from '../../../constants/color/colorpalette';
+import {getImageApi} from '../../../constants/utils/image';
+import {getAvarageRating} from '../../MovieScore/getAverageRating';
 
 export const PosterImages: React.FC<IPosterImageProps> = ({
   backdropPath,
@@ -51,7 +51,7 @@ export const PosterImages: React.FC<IPosterImageProps> = ({
             {title}
           </Text>
           <View style={styles.photoStar}>
-            {getAvarageRating(vote_average).map((value) => (
+            {getAvarageRating(vote_average).map(value => (
               <MaterialCommunityIcons
                 key={value}
                 name="star"
