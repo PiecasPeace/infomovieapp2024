@@ -1,7 +1,6 @@
 import React, {useState, Fragment} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import {FlatList, View, ListRenderItem} from 'react-native';
-import Spinner from '../../../../../components/Spinner/Spinner';
 import {styles} from './styles';
 import {
   ItmdbItem,
@@ -15,6 +14,7 @@ import {
   loadFavorites,
   handleMovies,
 } from '../../../../../constants/HandleAsyncStorage/HandleAS';
+import {Spinner} from '../../../../../components/Spinner/Spinner';
 
 export const HomeList: React.FC<IHomeListProps> = ({
   fetchUrl,
@@ -26,31 +26,62 @@ export const HomeList: React.FC<IHomeListProps> = ({
   );
   let favoriteMap = new Map<number, ItmdbItem>();
 
+  // const fetchData = async () => {
+  //   setLoading(true);
+  //   let MovieMapBody = new Map<number, ItmdbItem>();
+  //   try {
+  //     const request = await fetch(`${baseTMDBUrl}${fetchUrl}`);
+  //     const result = (await request.json()) as ItmdbJsonGET;
+  //     favoriteMap = await loadFavorites(favoriteMap);
+  //     for (let i = 0; i < result.results.length; i++) {
+  //       if (favoriteMap.get(result.results[i].id) !== undefined) {
+  //         result.results[i].favorite = true;
+  //       } else {
+  //         result.results[i].favorite = false;
+  //       }
+  //       MovieMapBody = MovieMapBody.set(
+  //         result.results[i].id,
+  //         result.results[i],
+  //       );
+  //       updateMap(result.results[i].id, result.results[i]);
+  //     }
+  //     setMovieMap(MovieMapBody);
+  //   } catch (error) {
+  //     console.log('Fetchproblem at CustomFlatList: ');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  // const updateMap = (id: number, movieValues: ItmdbItem) => {
+  //   setMovieMap(new Map<number, ItmdbItem>(movieMap.set(id, movieValues)));
+  // };
   const fetchData = async () => {
     setLoading(true);
-    let MovieMapBody = new Map<number, ItmdbItem>();
+    const movieMapBody = new Map<number, ItmdbItem>();
+
     try {
       const request = await fetch(`${baseTMDBUrl}${fetchUrl}`);
       const result = (await request.json()) as ItmdbJsonGET;
+
       favoriteMap = await loadFavorites(favoriteMap);
-      for (let i = 0; i < result.results.length; i++) {
-        if (favoriteMap.get(result.results[i].id) !== undefined) {
-          result.results[i].favorite = true;
-        } else {
-          result.results[i].favorite = false;
-        }
-        MovieMapBody = MovieMapBody.set(
-          result.results[i].id,
-          result.results[i],
-        );
-        updateMap(result.results[i].id, result.results[i]);
-      }
-      setMovieMap(MovieMapBody);
+
+      result.results.forEach(movie => {
+        const isFavorite = favoriteMap.has(movie.id);
+        movie.favorite = isFavorite;
+        movieMapBody.set(movie.id, movie);
+        updateMap(movie.id, movie);
+      });
+
+      setMovieMap(movieMapBody);
     } catch (error) {
-      console.log('Fetchproblem at CustomFlatList');
+      console.log('Fetch problem at CustomFlatList', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const updateMap = (id: number, movieValues: ItmdbItem) => {
+    setMovieMap(new Map<number, ItmdbItem>([...movieMap, [id, movieValues]]));
   };
 
   useFocusEffect(
@@ -58,10 +89,6 @@ export const HomeList: React.FC<IHomeListProps> = ({
       fetchData();
     }, [fetchUrl]),
   );
-
-  const updateMap = (id: number, movieValues: ItmdbItem) => {
-    setMovieMap(new Map<number, ItmdbItem>(movieMap.set(id, movieValues)));
-  };
 
   // const openMovieDetails = async (movieID: number) => {
   //   setLoadingID(false);

@@ -17,12 +17,11 @@ import _ from 'lodash';
 import {MovieLayout} from '../../../../components/MovieLayout/MovieItem/MovieLayout';
 import {IUPCInterface} from '../../../../constants/Interfaces/IupcInterface';
 import {IMovieIDInterface} from '../../../../constants/Interfaces/IMovieByIDInterface';
-import {ItmdbItem, ItmdbJsonGET} from '../../../../constants/Interfaces/IMovieInterface';
 import {
-  DARK_GRAY,
-  NEUTRAL_GREEN,
-  WHITE,
-} from '../../../../constants/Colors/colorpalette';
+  ItmdbItem,
+  ItmdbJsonGET,
+} from '../../../../constants/Interfaces/IMovieInterface';
+
 import {IBarcodeState} from './IBarcodeState';
 import {ShowHistory} from './MovieHistory/HistoryItem';
 import {handleHistoryOrder} from './MovieHistory/handleHistoryOrder';
@@ -30,6 +29,12 @@ import {
   handleMovies,
   loadFavorites,
 } from '../../../../constants/HandleAsyncStorage/HandleAS';
+import {handleTryCatch} from '../../../../constants/utils/tryCatcher';
+import {
+  DARK_GRAY,
+  WHITE,
+  NEUTRAL_GREEN,
+} from '../../../../constants/color/colorpalette';
 
 export const BarcodeScreen: React.FC = () => {
   let favoriteMap = new Map<number, ItmdbItem>();
@@ -41,7 +46,7 @@ export const BarcodeScreen: React.FC = () => {
   const [tmdbdataLoaded, settmdbDataLoaded] = useState(false);
   const [movieDetail, setMovieDetail] = useState(false);
   const [loadedID, setLoadedID] = useState(false);
-  const [history, setHistory] = useState<String[]>([]);
+  const [history, setHistory] = useState<string[]>([]);
   const [scanSuccess, setScanSuccess] = useState<IBarcodeState>({
     scan: false,
     scanResult: false,
@@ -61,7 +66,7 @@ export const BarcodeScreen: React.FC = () => {
     const check = event.data.substring(0, 4);
     const checkIP = event.data.substring(0, 11);
     if (check === 'http' || checkIP === '192.168.0.1') {
-      Linking.openURL(event.data).catch((err) =>
+      Linking.openURL(event.data).catch(err =>
         console.error('Error at QRCode HTTP/IP check', err),
       );
     } else {
@@ -75,11 +80,11 @@ export const BarcodeScreen: React.FC = () => {
     console.log(event);
     //api call upc DB (passing event.data, which is the barcode, titleList will be the title for the tmdb)
     await RequestMovieTitleByBarcode(event.data)
-      .then((titleList) => {
+      .then(titleList => {
         //api call movie DB with title parameter
         requestByBarcodeTitle(titleList);
       })
-      .catch((message) => {
+      .catch(message => {
         console.log('failed onSuccess fetching: ' + message);
       });
   };
@@ -99,20 +104,36 @@ export const BarcodeScreen: React.FC = () => {
   };
 
   const requestByHistoryTitle = async (index: number) => {
-    try {
+    await handleTryCatch(async () => {
       setBarcodeMovie(new Map<number, ItmdbItem>());
-      await tmdbGetByTitle(`${history[index]}`).then((result) => {
-        handleFavoriteLoop(result);
-        settmdbDataLoaded(true);
-        setScanSuccess((prevState) => {
-          return {...prevState, scanResult: true};
-        });
-      });
-    } catch (error) {
-      console.log('FetchProblem -> requestByHistoryTitle: ' + error.message);
-      throw error;
-    }
+      const result = await tmdbGetByTitle(history[index]);
+      handleFavoriteLoop(result);
+      settmdbDataLoaded(true);
+      setScanSuccess(prevState => ({...prevState, scanResult: true}));
+    });
   };
+  //TODO Does the above function work?
+  // const requestByHistoryTitle = async (index: number) => {
+  //   try {
+  //     setBarcodeMovie(new Map<number, ItmdbItem>());
+  //     await tmdbGetByTitle(`${history[index]}`).then(result => {
+  //       handleFavoriteLoop(result);
+  //       settmdbDataLoaded(true);
+  //       setScanSuccess(prevState => {
+  //         return {...prevState, scanResult: true};
+  //       });
+  //     });
+  //   } catch (error) {
+  //     if (typeof error === 'string') {
+  //       console.log(
+  //         'FetchProblem -> requestByHistoryTitle: ' + error.toUpperCase(), // works, `e` narrowed to string
+  //       );
+  //       error.toUpperCase(); // works, `e` narrowed to string
+  //     } else if (error instanceof Error) {
+  //       console.log('FetchProblem -> requestByHistoryTitle: ' + error.message);
+  //     }
+  //   }
+  // };
   const updateMap = (id: number, movieValues: ItmdbItem) => {
     setBarcodeMovie(
       new Map<number, ItmdbItem>(barcodeMovie.set(id, movieValues)),
@@ -125,11 +146,11 @@ export const BarcodeScreen: React.FC = () => {
       removeSpecialSigns,
     );
     let firstWordOfTitle = extractMovieTitles(title, getFirstWord);
-    try {
+    await handleTryCatch(async () => {
       //before every scan, we clear setMovies so we dont see it in the background after second scan
       setBarcodeMovie(new Map<number, ItmdbItem>());
       //fetch url with the lighterRegex
-      tmdbGetByTitle(titleWithoutSpecialSigns[0]).then((result) => {
+      tmdbGetByTitle(titleWithoutSpecialSigns[0]).then(result => {
         //IF total_results are 0, open alert which asks to search with the stronger Regex.
         if (result.total_results === 0) {
           NoTitleFoundAlert(
@@ -145,23 +166,21 @@ export const BarcodeScreen: React.FC = () => {
           settmdbDataLoaded(true);
         }
       });
-    } catch (error) {
-      console.log('FetchProblem -> requestBarcodeTitle: ' + error.message);
-      throw error;
-    }
+    });
   };
+
   const activeQR = () => {
-    setScanSuccess((prevState) => {
+    setScanSuccess(prevState => {
       return {...prevState, scan: true};
     });
   };
   const scanAgain = () => {
-    setScanSuccess((prevState) => {
+    setScanSuccess(prevState => {
       return {...prevState, scan: true, scanResult: false};
     });
   };
   const scanStop = () => {
-    setScanSuccess((prevState) => {
+    setScanSuccess(prevState => {
       return {...prevState, scan: false, scanResult: false};
     });
   };
@@ -169,7 +188,7 @@ export const BarcodeScreen: React.FC = () => {
     setMovieDetail(false);
   };
   const continueScanning = async (strongTitle: string) => {
-    await tmdbGetByTitle(strongTitle).then((betterResult) => {
+    await tmdbGetByTitle(strongTitle).then(betterResult => {
       handleFavoriteLoop(betterResult);
       handleHistoryOrder(strongTitle, history);
       settmdbDataLoaded(true);
@@ -177,13 +196,13 @@ export const BarcodeScreen: React.FC = () => {
   };
   const openMovieDetails = async (movieID: number) => {
     setLoadedID(false);
-    await tmdbGetById(movieID).then(async (result) => {
+    await tmdbGetById(movieID).then(async result => {
       await handleMovieDetails(result);
     });
     setLoadedID(true);
   };
   const handleMovieDetails = async (result: IMovieIDInterface) => {
-    setScanSuccess((prevState) => {
+    setScanSuccess(prevState => {
       return {...prevState, selected: result};
     });
     setMovieDetail(true);
@@ -225,7 +244,7 @@ export const BarcodeScreen: React.FC = () => {
 
             <View style={{flex: 1}}>
               <CustomButton
-                color={NEUTRAL_GREEN}
+                textColor={NEUTRAL_GREEN}
                 mode={'contained'}
                 Text={'Start Scan'}
                 style={styles.activateScan}
@@ -248,9 +267,9 @@ export const BarcodeScreen: React.FC = () => {
                 <CustomButton
                   style={styles.stopScan}
                   mode={'outlined'}
-                  color={WHITE}
+                  textColor={WHITE}
                   onPress={() =>
-                    setScanSuccess((prevState) => {
+                    setScanSuccess(prevState => {
                       return {...prevState, scan: false};
                     })
                   }
@@ -271,11 +290,14 @@ export const BarcodeScreen: React.FC = () => {
               stopScanFunction={scanStop}
             />
             {loadedID ? (
-              <MovieDetails
-                item={scanSuccess.selected}
-                onPress={closeModal}
-                visible={movieDetail}
-              />
+              //TODO: Add this back
+              // <MovieDetails
+              // item={scanSuccess.selected}
+              // onClose={closeModal}
+
+              // visible={movieDetail}
+              // />
+              <>D</>
             ) : (
               <></>
             )}

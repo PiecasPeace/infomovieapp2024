@@ -1,6 +1,12 @@
-import { StyleSheet } from "react-native";
-import { fontSizeResponsive } from "../../../constants/utils/dimensions";
-import { DARK_GRAY, WHITE, BLACK, DARK_PURPLE, DARK_BLUE } from "../../../constants/Colors/colorpalette";
+import {StyleSheet} from 'react-native';
+import {fontSizeResponsive} from '../../../constants/utils/dimensions';
+import {
+  DARK_GRAY,
+  WHITE,
+  BLACK,
+  DARK_PURPLE,
+  DARK_BLUE,
+} from '../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   FlatlistContainer: {
@@ -36,7 +42,7 @@ export const styles = StyleSheet.create({
   },
   containerReview: {
     justifyContent: 'space-between',
-    marginBottom:5
+    marginBottom: 5,
   },
   headertext: {
     fontSize: fontSizeResponsive(2.2),
@@ -47,8 +53,8 @@ export const styles = StyleSheet.create({
     height: 250,
     width: 150,
     borderRadius: 5,
-    borderColor:BLACK,
-    borderWidth:1
+    borderColor: BLACK,
+    borderWidth: 1,
   },
   //OWN MOVIES
   notOwned: {
@@ -72,7 +78,7 @@ export const styles = StyleSheet.create({
   },
   favoriteButton: {
     borderRadius: 5,
-    borderColor:BLACK,
-    borderWidth:1
+    borderColor: BLACK,
+    borderWidth: 1,
   },
 });

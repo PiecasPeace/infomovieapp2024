@@ -55,7 +55,7 @@ export const tmdbGetCompany = async (
 
   return result;
 };
-//Here we are searching movie_credits from a person's creditId. (this will give us the movies he/she played in)
+//Here we are searching movie_credits from a person's creditId. (this will give us the movies this mf played in)
 export const tmdbGetPersonReferences = async (
   id: number,
 ): Promise<ICast> => {

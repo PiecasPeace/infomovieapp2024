@@ -1,4 +1,3 @@
-import React from 'react';
 import {Platform, ActivityIndicator, View, StyleSheet} from 'react-native';
 import {DARK_PURPLE} from '../../constants/color/colorpalette';
 

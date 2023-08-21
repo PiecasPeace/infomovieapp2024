@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {WHITE} from '../../../../constants/Colors/colorpalette';
+import {WHITE} from '../../../../constants/color/colorpalette';
 
 export const ExploreScreen = () => {
   return (

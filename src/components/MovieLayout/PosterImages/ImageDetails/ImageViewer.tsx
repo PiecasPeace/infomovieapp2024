@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {Modal, Platform, ToastAndroid, View} from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import Spinner from '../../../Spinner/Spinner';
-import {BLACK, WHITE} from '../../../../constants/Colors/colorpalette';
 import {IImageModalProps} from './IImageProps';
 import RNFetchBlob, {FetchBlobResponse} from 'rn-fetch-blob';
 import {CustomGetPermissionAndroid} from '../../../blueprints/CustomHandleDownload/CustomGetPermissionAndroid';
 import {CustomButton} from '../../../blueprints/CustomButton/CustomButton';
+import {Spinner} from '../../../Spinner/Spinner';
+import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import { BLACK, WHITE } from '../../../../constants/color/colorpalette';
 
 const ImagesModal: React.FC<IImageModalProps> = ({
   showImage = false,
@@ -40,7 +41,7 @@ const ImagesModal: React.FC<IImageModalProps> = ({
               ToastAndroid.BOTTOM,
             );
           })
-          .catch((err) => {
+          .catch(err => {
             ToastAndroid.showWithGravity(
               'Error' + err,
               ToastAndroid.SHORT,
@@ -49,7 +50,7 @@ const ImagesModal: React.FC<IImageModalProps> = ({
           })
           .finally(() => setLoading(false));
       })
-      .catch((err) => {
+      .catch(err => {
         setLoading(false);
         ToastAndroid.showWithGravity(
           'Error beim catching ganz unten' + err,
@@ -74,7 +75,7 @@ const ImagesModal: React.FC<IImageModalProps> = ({
           <View>
             <CustomButton
               onPress={() => handleDownload(currentIndex)}
-              color={BLACK}
+              buttonColor={BLACK}
               mode={'contained'}
               Text={'Save to Gallery'}
               icon={'download'}

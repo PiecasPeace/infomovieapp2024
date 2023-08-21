@@ -4,11 +4,11 @@ import {Platform} from 'react-native';
 import {ExploreStackScreen} from '../layout/HeaderStackScreens/SearchHeader/ExploreStackScreen';
 import {HomeStackScreen} from '../layout/HeaderStackScreens/HomeHeader/HomeStackScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DARK_PURPLE, WHITE} from '../../constants/Colors/colorpalette';
 import {MapContextProvider} from './Context/ContextProvider';
 import {CollectionStackScreen} from '../layout/HeaderStackScreens/CollectionHeader/CollectionStackScreen';
 import {BarcodeStackScreen} from '../layout/HeaderStackScreens/BarcodeHeader/BarcodeStackScreen';
-import { RootStackParamList } from '../../constants/Navigation/navigation';
+import {RootStackParamList} from '../../constants/Navigation/navigation';
+import {WHITE, DARK_PURPLE} from '../../constants/color/colorpalette';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 export const MainTabScreen: React.FC = () => {
@@ -16,9 +16,9 @@ export const MainTabScreen: React.FC = () => {
     <MapContextProvider>
       <Tab.Navigator
         initialRouteName="Home"
-        tabBarOptions={{
-          activeTintColor: WHITE,
-          style: {
+        screenOptions={{
+          tabBarActiveTintColor: WHITE,
+          tabBarStyle: {
             backgroundColor: DARK_PURPLE,
             paddingTop: Platform.OS === 'ios' ? 20 : 0,
           },

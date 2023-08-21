@@ -1,14 +1,21 @@
 import React from 'react';
 import {Modal, View, Text, Image} from 'react-native';
-import {getImageApi} from '../../../constants/utils/Image';
 import {styles} from './styles';
 import {moviePopupGenre} from '../../../constants/utils/genreFunctions';
 import {getLanguage} from '../../../constants/Language/getLanguageFunction';
-import {renderScore} from '../../../constants/MovieScore/renderScore';
-import {renderDivider} from '../../../constants/RenderDivider/RenderDivider';
 import {CustomButton} from '../../blueprints/CustomButton/CustomButton';
-import {TVSeriesProps} from './TVSeriesPropsInterface';
-import { convertToYear } from '../../../constants/convert/convertToDates';
+import {convertToYear} from '../../../constants/convert/convertToDates';
+import {getImageApi} from '../../../constants/utils/image';
+import {renderScore} from '../../MovieScore/renderScore';
+import {renderDivider} from '../../RenderDivider/RenderDivider';
+import {IMovieIDTVInterface} from '../../../constants/Interfaces/IMovieByIDTVInterface';
+import {IMovieIDInterface} from '../../../constants/Interfaces/IMovieByIDInterface';
+
+export interface TVSeriesProps {
+  onPress: () => void;
+  item: IMovieIDInterface;
+  visible: boolean;
+}
 
 export const TVSeriesPopup: React.FC<TVSeriesProps> = ({
   item,
@@ -26,7 +33,9 @@ export const TVSeriesPopup: React.FC<TVSeriesProps> = ({
         <View style={styles.item}>
           <View>
             <Text numberOfLines={2} style={styles.headertext}>
-              {item.title !== undefined ? item.title : item.name}
+              {item.title !== undefined
+                ? item.title
+                : item.belongs_to_collection[0].name}
             </Text>
             <View style={[styles.textRow, styles.containerSubTitle]}>
               <Text style={styles.textSmall}>
@@ -49,13 +58,13 @@ export const TVSeriesPopup: React.FC<TVSeriesProps> = ({
       <CustomButton
         style={styles.textSmall}
         Text="CLOSE BUTTON"
-        color="#010101"
+        buttonColor="#010101"
         onPress={onPress}
         mode="outlined"
       />
       <Text>{item.homepage}</Text>
       <Text style={{paddingTop: 20}}>{item.overview}</Text>
-      <Text>{item.last_air_date}</Text>
+      {/* <Text>{item.last_air_date}</Text> */}
       <Image
         source={getImageApi(item.poster_path)}
         style={styles.photo}

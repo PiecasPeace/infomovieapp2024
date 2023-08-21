@@ -1,9 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-  DARK_GRAY,
-  PINK,
-  WHITE,
-} from '../../../../../constants/Colors/colorpalette';
+import {DARK_GRAY, WHITE} from '../../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   historyContainer: {

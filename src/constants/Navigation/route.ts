@@ -1,19 +1,17 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from './navigation';
+//TODO Refactor whole route.ts
 
 export type RouteRootStackParamList = {
   CustomFlatListToMovieDetail: {id: number};
   MovieDetailToMovieVideo: {key: number};
 };
 
-type ProfileScreenRouteProp = RouteProp<
-  RootStackParamList,
-  'MovieDetails'
->;
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'MovieDetails'>;
 
 type MovieDetailScreenRouteProp = {
-    // navigation:
+  // navigation:
   route: MovieDetailScreenRouteProp;
 };
 

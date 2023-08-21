@@ -36,7 +36,7 @@ import {fontSizeResponsive} from '../../../constants/utils/dimensions';
 import {CustomSafeAreaView} from '../../blueprints/CustomSafeAreaView/CustomSafeAreaView';
 import {isoLanguage} from '../../../constants/Language/isoLanguage';
 import {Spinner} from '../../Spinner/Spinner';
-import {BLUE} from '../../../constants/color/colorpalette';
+import {renderEmptyList} from '../../../constants/utils/renderEmptyList';
 
 export const MovieDetails: React.FC<IMovieDetailProps> = ({
   item,
@@ -142,21 +142,6 @@ export const MovieDetails: React.FC<IMovieDetailProps> = ({
     } finally {
       setLoading(false);
     }
-  };
-
-  const renderEmptyList = () => {
-    return (
-      <View>
-        <Text
-          style={{
-            fontSize: fontSizeResponsive(2.1),
-            color: BLUE,
-            textAlign: 'justify',
-          }}>
-          No Information
-        </Text>
-      </View>
-    );
   };
 
   const PersonList: ListRenderItem<ICastItem> = ({

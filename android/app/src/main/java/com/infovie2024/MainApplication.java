@@ -1,5 +1,6 @@
 package com.infovie2024;
 
+import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import android.app.Application;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;

@@ -1,14 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {
+  LIGHT_PURPLE,
+  WHITE,
   BLACK,
   BORDEAUX_RED,
   DARK_GRAY,
-  DARK_GREEN,
-  DARK_RED,
-  LIGHT_PURPLE,
   NEUTRAL_GREEN,
-  WHITE,
-} from '../../../../constants/Colors/colorpalette';
+} from '../../../../constants/color/colorpalette';
 
 export const styles = StyleSheet.create({
   barcodeContainer: {
@@ -66,8 +64,8 @@ export const styles = StyleSheet.create({
   historyText: {
     color: DARK_GRAY,
     fontSize: 17,
-    borderRadius:5,
-    marginTop:15
+    borderRadius: 5,
+    marginTop: 15,
   },
   scanAgain: {
     borderRadius: 2,

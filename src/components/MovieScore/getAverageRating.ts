@@ -1,11 +1,11 @@
-export const getAvarageRating = (score:number) => {
-  const avarage = score > 5 ? Math.round(score) : score;
+export const getAverageRating = (score: number): number[] => {
+  const average = score > 5 ? Math.round(score) : score;
 
-  if (avarage >= 5) {
+  if (average >= 5) {
     const length =
-      avarage !== 10 ? parseInt(`${avarage}`.charAt(0)) - 5 : avarage - 5;
+      average !== 10 ? parseInt(average.toString()[0]) - 5 : average - 5;
 
-    return [...Array(length)].map((_, i) => i);
+    return Array.from({length}, (_, i) => i);
   }
 
   return [];

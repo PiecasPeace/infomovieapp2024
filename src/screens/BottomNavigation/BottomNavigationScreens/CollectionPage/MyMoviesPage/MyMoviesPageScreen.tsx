@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {CustomButton} from '../../../../../components/blueprints/CustomButton/CustomButton';
-import Spinner from '../../../../../components/Spinner/Spinner';
-import {PINK, WHITE} from '../../../../../constants/Colors/colorpalette';
 import {styles} from './styles';
+import {Spinner} from '../../../../../components/Spinner/Spinner';
+import {WHITE, PINK} from '../../../../../constants/color/colorpalette';
 
 export const MyMoviesPageScreen: React.FC = ({navigation}: any) => {
+  //TODO: what is that supposed to be here?
   const [loading, setLoading] = useState(false);
   return (
     <View style={styles.myMoviesContainer}>
@@ -16,7 +17,7 @@ export const MyMoviesPageScreen: React.FC = ({navigation}: any) => {
           <Text style={{color: WHITE}}>Here in myMoviesPageScreen</Text>
           <CustomButton
             Text="Go back to Home"
-            color={PINK}
+            buttonColor={PINK}
             mode="outlined"
             style={{}}
             onPress={() => navigation.goBack()}
